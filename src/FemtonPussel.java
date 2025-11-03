@@ -107,7 +107,7 @@ public class FemtonPussel extends JFrame {
     }
     private boolean checkWin(){
 
-        int rättNummer = 1;
+        int rightNummer = 1;
         for (int rad = 0; rad < 4; rad++) {
             for (int column = 0; column < 4; column++) {
                 if (rad == 3 && column == 3) {
@@ -115,10 +115,10 @@ public class FemtonPussel extends JFrame {
                         return false;
                     }
                 } else {
-                    if (!knappar[rad][column].getText().equals(String.valueOf(rättNummer))) {
+                    if (!knappar[rad][column].getText().equals(String.valueOf(rightNummer))) {
                         return false;
                     }
-                    rättNummer++;
+                    rightNummer++;
                 }
 
             }
