@@ -45,6 +45,7 @@ public class FemtonPussel extends JFrame {
     }
 
     static void main(){
+        System.out.println("hej");
         new FemtonPussel();
     }
 
