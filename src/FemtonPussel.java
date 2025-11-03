@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class FemtonPussel extends JFrame {
     private JButton[][] knappar = new JButton[4][4];
@@ -39,14 +40,13 @@ public class FemtonPussel extends JFrame {
         mainPanel.add(rutNät, BorderLayout.CENTER);
         mainPanel.add(shuffleKnapp, BorderLayout.SOUTH);
         mainPanel.add(statusBanner, BorderLayout.NORTH);
+        shuffleKnapp.addActionListener(e -> shuffleTiles());
 
         add(mainPanel);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-
     }
-
     public class MoveTileListener implements ActionListener{
         private int rad;
         private int column;
@@ -81,6 +81,21 @@ public class FemtonPussel extends JFrame {
             return true;
         }
         return false;
+    }
+    public void shuffleTiles(){
+        Random random = new Random();
+        for (int i = 0; i < 999; i++) {
+            int rad = random.nextInt(4);
+            int column = random.nextInt(4);
+
+            if (isNextToEmpty(rad, column)){
+                knappar[tomRad][tomColumn].setText(knappar[rad][column].getText());
+                knappar[rad][column].setText("");
+                tomRad = rad;
+                tomColumn = column;
+
+            }
+        }
     }
 
     static void main(){
