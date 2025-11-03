@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FemtonPussel extends JFrame {
     private JButton[][] knappar = new JButton[4][4];
@@ -28,6 +30,7 @@ public class FemtonPussel extends JFrame {
                 }
                 knappar[rad][column] = knapp;
                 rutNät.add(knapp);
+                knapp.addActionListener(new MoveTileListener(rad, column));
 
             }
 
@@ -42,6 +45,42 @@ public class FemtonPussel extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
+    }
+
+    public class MoveTileListener implements ActionListener{
+        private int rad;
+        private int column;
+
+        MoveTileListener(int rad, int column){
+            this.rad = rad;
+            this.column = column;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (isNextToEmpty(rad, column)){
+                knappar[tomRad][tomColumn].setText(knappar[rad][column].getText());
+                knappar[rad][column].setText("");
+
+                tomRad = rad;
+                tomColumn = column;
+
+            }
+
+        }
+    }
+
+    public boolean isNextToEmpty(int rad, int column){
+        if (rad == tomRad - 1 && column ==tomColumn){
+            return true;
+        } else if (rad == tomRad + 1 && column == tomColumn) {
+            return true;
+        } else if (rad == tomRad && column == tomColumn -1) {
+            return true;
+        } else if (rad == tomRad && column == tomColumn +1){
+            return true;
+        }
+        return false;
     }
 
     static void main(){
