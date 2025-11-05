@@ -17,7 +17,6 @@ public class FemtonPussel extends JFrame {
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel rutNät = new JPanel(new GridLayout(4, 4));
         JButton shuffleKnapp = new JButton("Shuffle");
-        statusBanner = new JLabel("Tryck på shuffle knappen för att starta spel");
         int nummerPåKnapp = 1;
 
         for (int rad = 0; rad < 4; rad++) {
@@ -38,8 +37,7 @@ public class FemtonPussel extends JFrame {
         }
 
         mainPanel.add(rutNät, BorderLayout.CENTER);
-        mainPanel.add(shuffleKnapp, BorderLayout.SOUTH);
-        mainPanel.add(statusBanner, BorderLayout.NORTH);
+        mainPanel.add(shuffleKnapp, BorderLayout.SOUTH);;
         shuffleKnapp.addActionListener(e -> shuffleTiles());
 
         add(mainPanel);
@@ -67,9 +65,7 @@ public class FemtonPussel extends JFrame {
                 tomColumn = column;
 
                 if (checkWin()){
-                    statusBanner.setText("Du Vann! Grattis!");
-                }else {
-                    statusBanner.setText("Spel pågår!");
+                    JOptionPane.showMessageDialog(null, "Grattis du vann!");
                 }
 
             }
@@ -103,7 +99,7 @@ public class FemtonPussel extends JFrame {
 
             }
         }
-        statusBanner.setText("Spel pågår!");
+
     }
     private boolean checkWin(){
 
